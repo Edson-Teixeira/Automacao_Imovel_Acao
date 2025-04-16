@@ -20,10 +20,7 @@ SENHA = os.getenv("SENHA_SISTEMA")
 navegador_options = Options()
 navegador_options.add_argument('--headless')  # Rodar o navegador em segundo plano
 
-navegador = webdriver.Firefox(
-    options=navegador_options,
-    service=Service(GeckoDriverManager().install())
-)
+navegador = webdriver.Firefox(options=navegador_options,service=Service(GeckoDriverManager().install()))
 
 def criar_pasta(caminho: str):
     try:
@@ -44,7 +41,7 @@ def espera(by, xpath, texto_input):
             return True
         except:
             try:
-                mensagem = navegador.find_element(By.XPATH, "/html/body/table/tbody/tr/td/table[3]/tbody/tr[1]/td[2]").text
+                mensagem = navegador.find_element(By.XPATH, "td/table[3]/tbody/tr[1]/td[2]").text
                 if "desconhecido" in mensagem:
                     return False
             except:
